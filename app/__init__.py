@@ -81,7 +81,23 @@ def create_post():
     Page Formulaire création d'un article
 
     Returns:
-        template: template create.html
+        template: template create.html or index.html if post is adding on database 
     """
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        post = {
+            "title" : title,
+            "content" : content
+        }
+        if not title and not content:
+            flash('Tous les champs sont requis !')
+        else:
+            conn = get_db_connection()
+            conn.execute('INSERT INTO posts (title, content) VALUES (:title, :content)', post)
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
     return render_template('create.html')
 

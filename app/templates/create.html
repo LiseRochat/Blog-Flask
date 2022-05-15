@@ -6,10 +6,10 @@
 <form method="post">
 
     <label for="title">Titre</label>
-    <input type="text" name="title" placeholder="Post title" value="{{ request.form['title'] }}"></input>
+    <input type="text" name="title" placeholder="Post title" value="{{ request.form['title'] }}" required></input>
  
     <label for="content">Contenu</label>
-    <textarea name="content" placeholder="Post content">{{ request.form['content'] }}</textarea>
+    <textarea name="content" placeholder="Post content" required>{{ request.form['content'] }}</textarea>
 
     <button type="submit">Ajouter</button>
 
