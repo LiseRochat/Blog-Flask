@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %} Edit "{{ post['title'] }}" {% endblock %}</h1>
+
+<form method="post">
+
+        <label for="title">Titre</label>
+        <input type="text" name="title" placeholder="Modifier le titre de l'article" value="{{ request.form['title'] or post['title'] }}" required></input>
+   
+
+        <label for="content">Contenu</label>
+        <textarea name="content" placeholder="Modifier le contenu de votre article ici" required>{{ request.form['content'] or post['content'] }}</textarea>
+
+        <button type="submit" class="btn btn-primary">Modifier</button>
+</form>
+<hr>
+{% endblock %}
