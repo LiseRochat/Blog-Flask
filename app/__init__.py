@@ -133,3 +133,22 @@ def edit(id):
             return redirect(url_for('index'))
 
     return render_template('edit.html', post=post)
+
+@app.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    """
+    Delete one article
+
+    Args:
+        id (int): item id
+
+    Returns:
+        template: template index.html if post is delete on database 
+    """
+    post = get_db_post(id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = :id', id)
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted!'.format(post['title']))
+    return redirect(url_for('index'))
