@@ -15,7 +15,7 @@ from werkzeug.exceptions import abort
 
 app = Flask(__name__)
 # The user can access the information stored in the session, but cannot modify it if he does not have the secret key
-app.config['SECRET_KEY'] = '59#MHsXLYP^iUnT3g4ebeoEasjrn5fz^ekBDvrVQ7yi$34SEx'
+app.config['SECRET_KEY'] = 'fWnVHxWvfaxYYKwvcYGmmiQnZjELBLWwKHXMNVgvCjQSFHsbT'
 
 def get_db_connection():
     """
@@ -136,18 +136,17 @@ def edit(id):
 
 @app.route('/<int:id>/delete', methods=('POST',))
 def delete(id):
-    """
-    Delete one article
+    """delete one article
 
     Args:
-        id (int): item id
+        id (int): id post
 
     Returns:
-        template: template index.html if post is delete on database 
+        url: redirect to home page
     """
     post = get_db_post(id)
     conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = :id', id)
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
     conn.commit()
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
