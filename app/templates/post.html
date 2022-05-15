@@ -4,5 +4,5 @@
     <h2>{% block title %} {{ post['title'] }} {% endblock %}</h2>
     <span>{{ post['created'] }}</span>
     <p>{{ post['content'] }}</p>
-    
+    <a href="{{ url_for('edit', id=post['id']) }}">Modifier</a>
 {% endblock %}
