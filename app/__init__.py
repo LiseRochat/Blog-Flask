@@ -19,10 +19,10 @@ app.config['SECRET_KEY'] = '59#MHsXLYP^iUnT3g4ebeoEasjrn5fz^ekBDvrVQ7yi$34SEx'
 
 def get_db_connection():
     """
-    Connection a la base de donnée
+    Connection to the database
 
     Returns:
-        connection: connection valide 
+        connection: valid connection 
     """
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
@@ -30,13 +30,13 @@ def get_db_connection():
 
 def get_db_post(post_id):
     """
-    Sélectionne la ligne dans la table post présent dans la base de donnée corresponsant a l'id 
+    Select the line in the post table present in the database corresponding to the id
 
     Args:
-        post_id (int): identifiant du post (unique pour chaque post contenu dans la base de donnée)
+        post_id (int): post identifier (unique for each post contained in the database)
 
     Returns:
-        post: retourne le contenu du post 
+        post: returns the content of the post
     """
     dict_post_id = {"id" : post_id}
     conn = get_db_connection()
@@ -51,7 +51,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """
-    Page d'accueil
+    Home page
 
     Returns:
         template: template index.html
@@ -64,10 +64,10 @@ def index():
 @app.route('/<int:post_id>')
 def post(post_id):
     """
-    Page : Zoom article
+    Page: Zoom article
 
     Args:
-        post_id (int): identifiant de l'article
+        post_id (int): item id
 
     Returns:
         template: template post.html
@@ -78,7 +78,7 @@ def post(post_id):
 @app.route('/create', methods=('GET', 'POST'))
 def create_post():
     """
-    Page Formulaire création d'un article
+    Article creation form page
 
     Returns:
         template: template create.html or index.html if post is adding on database 
