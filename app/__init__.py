@@ -77,5 +77,11 @@ def post(post_id):
 
 @app.route('/create', methods=('GET', 'POST'))
 def create_post():
+    """
+    Page Formulaire création d'un article
+
+    Returns:
+        template: template create.html
+    """
     return render_template('create.html')
 
