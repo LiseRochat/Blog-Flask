@@ -101,3 +101,35 @@ def create_post():
 
     return render_template('create.html')
 
+@app.route('/<int:id>/edit', methods=('GET', 'POST'))
+def edit(id):
+    """
+    Edit one article
+
+    Args:
+        id (int): item id
+
+    Returns:
+        template: template edit.html or index.html if post is adding on database 
+    """
+    post = get_db_post(id)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+        post = {
+            "id" : id,
+            "title" : title,
+            "content" : content
+        }
+        if not title and not content:
+            flash('Tous les champs sont requis !')
+        else:
+            conn = get_db_connection()
+            conn.execute('UPDATE posts SET title = :title, content = :content'
+                         ' WHERE id = :id', post)
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+    return render_template('edit.html', post=post)
