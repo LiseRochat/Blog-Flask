@@ -14,6 +14,8 @@ from flask import redirect
 from werkzeug.exceptions import abort
 
 app = Flask(__name__)
+# The user can access the information stored in the session, but cannot modify it if he does not have the secret key
+app.config['SECRET_KEY'] = '59#MHsXLYP^iUnT3g4ebeoEasjrn5fz^ekBDvrVQ7yi$34SEx'
 
 def get_db_connection():
     """
