@@ -26,7 +26,7 @@ Realization of a CRUD with framework FLask
 
 ### Visual
 Here is an overview of project. </br>
-<img src="script/img/screenshot.png" alt="screenshot result">
+<img src="static/img/screenshot.png" alt="screenshot result">
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ***
@@ -44,6 +44,7 @@ Here is an overview of project. </br>
 1. Clone the project
 ```
 git clone https://github.com/LiseRochat/Blog-Flask
+```
 2. Open file with you text editor 
 3. Create a virtual env
 4. Install PySide2
