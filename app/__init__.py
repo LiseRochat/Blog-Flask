@@ -59,7 +59,7 @@ def index():
     conn = get_db_connection()
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
-    return render_template('index.html', posts=posts)
+    return render_template('blog/index.html', posts=posts)
 
 @app.route('/<int:post_id>')
 def post(post_id):
@@ -73,7 +73,7 @@ def post(post_id):
         template: template post.html
     """
     post = get_db_post(post_id)
-    return render_template('post.html', post=post)
+    return render_template('blog/post.html', post=post)
 
 @app.route('/create', methods=('GET', 'POST'))
 def create_post():
@@ -99,7 +99,7 @@ def create_post():
             conn.close()
             return redirect(url_for('index'))
 
-    return render_template('create.html')
+    return render_template('blog/create.html')
 
 @app.route('/<int:id>/edit', methods=('GET', 'POST'))
 def edit(id):
@@ -132,7 +132,7 @@ def edit(id):
             conn.close()
             return redirect(url_for('index'))
 
-    return render_template('edit.html', post=post)
+    return render_template('blog/edit.html', post=post)
 
 @app.route('/<int:id>/delete', methods=('POST',))
 def delete(id):
