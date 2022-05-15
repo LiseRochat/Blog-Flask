@@ -14,8 +14,7 @@ from flask import redirect
 from werkzeug.exceptions import abort
 
 app = Flask(__name__)
-# The user can access the information stored in the session, but cannot modify it if he does not have the secret key
-app.config['SECRET_KEY'] = 'fWnVHxWvfaxYYKwvcYGmmiQnZjELBLWwKHXMNVgvCjQSFHsbT'
+app.config['SECRET_KEY'] = 'fWnVHxWvfaxYYKwvcYGmmiQnZjELBLWw'
 
 def get_db_connection():
     """
@@ -45,8 +44,6 @@ def get_db_post(post_id):
     if post is None:
         abort(404)
     return post
-
-app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -145,8 +142,11 @@ def delete(id):
         url: redirect to home page
     """
     post = get_db_post(id)
+    d = {
+        "id" : id
+    }
     conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.execute('DELETE FROM posts WHERE id = :id', d)
     conn.commit()
     conn.close()
     flash('"{}" was successfully deleted!'.format(post['title']))
