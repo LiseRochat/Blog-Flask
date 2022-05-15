@@ -1,5 +1,16 @@
 import sqlite3
-from flask import Flask, render_template
+from flask import Flask
+# which allows the use of the Jinja template engine
+from flask import render_template
+# to access data from the incoming request that will be submitted using an HTML form
+from flask import request
+# to generate URLs
+from flask import url_for
+# to display a message when a request is processed
+from flask import flash
+# to redirect the client to another location
+from flask import redirect
+# to acces erros page
 from werkzeug.exceptions import abort
 
 app = Flask(__name__)
