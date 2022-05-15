@@ -26,7 +26,7 @@ Realization of a CRUD with framework FLask
 
 ### Visual
 Here is an overview of project. </br>
-<img src="static/img/screenshot.png" alt="screenshot result">
+<img src="app/static/img/screenshot.png" alt="screenshot result">
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ***
