@@ -47,7 +47,7 @@ git clone https://github.com/LiseRochat/Blog-Flask
 ```
 2. Open file with you text editor 
 3. Create a virtual env
-4. Install PySide2
+4. Install flask
 5. Run 
 <p align="right">(<a href="#top">back to top</a>)</p> <br>
 
